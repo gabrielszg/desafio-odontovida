@@ -18,8 +18,8 @@ public class Funcionarios implements Serializable{
 		return manager.merge(funcionario);
 	}
 	
-	public Funcionario porId(Integer idFuncionario) {
-		return manager.find(Funcionario.class, idFuncionario);
+	public Funcionario porCpf(String cpf) {
+		return manager.find(Funcionario.class, cpf);
 		
 	}
 }

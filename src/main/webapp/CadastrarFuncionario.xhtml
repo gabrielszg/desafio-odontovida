@@ -44,14 +44,24 @@
 	</script>
 </h:head>
 <h:body>
-	<h1>Cadastro de Funcionários</h1>
+	<h1 style="font-family: arial; text-align: center">OdontoVida</h1>
+
+	<div id="header" style="text-align: center">
+		<h:graphicImage id="logo" library="images" name="funcionario.png"
+			style="width: 150px "></h:graphicImage>
+	</div>
 </h:body>
+
 <h:form id="form">
 
 	<p:messages closable="true" />
+
+	<p:panelGrid columns="2">
 	
-	<p:panelGrid columns="2" cellpadding="3">
-	
+		<f:facet name="header" >
+			<p:outputLabel value="Cadastro de Funcionário" style="font-size: 22px"/>
+		</f:facet>
+
 		<p:outputLabel value="Nome" for="nome" />
 		<p:inputText id="nome" value="#{funcionarioBean.funcionario.nome}"
 			required="true" />
@@ -68,14 +78,15 @@
 
 		<p:outputLabel value="Salário" for="salario" />
 		<p:inputNumber id="salario" symbol="R$" decimalSeparator=","
-			thousandSeparator="." minValue="0" maxValue="1000000000.00" value="#{funcionarioBean.funcionario.salario}"
-			required="true" />
+			thousandSeparator="." minValue="0" maxValue="1000000000.00"
+			value="#{funcionarioBean.funcionario.salario}" required="true" />
 
+		<f:facet name="footer">
+			<p:commandButton value="Cadastrar" id="submit"
+				action="#{funcionarioBean.salvar}" icon="ui-icon-disk"
+				iconPos="right" update="form" />
+		</f:facet>
 	</p:panelGrid>
-	
-	<p:commandButton value="Cadastrar" id="submit"
-			action="#{funcionarioBean.salvar}" icon="ui-icon-disk"
-			iconPos="right" update="@form" />
 </h:form>
 </html>
 

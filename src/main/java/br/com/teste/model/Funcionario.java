@@ -26,7 +26,6 @@ public class Funcionario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(precision = 11)
 	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
@@ -54,7 +53,7 @@ public class Funcionario implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	// @CPF
+	//@CPF
 	@Column(nullable = false, unique = true, length = 14)
 	public String getCpf() {
 		return cpf;

@@ -17,11 +17,11 @@ public class FuncionarioService implements Serializable {
 	
 	@Transactional
 	public Funcionario salvar(Funcionario funcionario) throws CadastroException {
-		Funcionario funcionarioExistente = funcionarios.porId(funcionario.getIdFuncionario());
-		
-		if (funcionarioExistente != null && !funcionarioExistente.equals(funcionario)) {
-			throw new CadastroException("Já existe funcionário com esse ID.");
-		}
+//		Funcionario funcionarioExistente = funcionarios.porCpf(funcionario.getCpf());
+//		
+//		if (funcionarioExistente != null && !funcionarioExistente.equals(funcionario)) {
+//			throw new CadastroException("Já existe funcionário cadastrado com esse CPF.");
+//		}
 		
 		return funcionarios.guardar(funcionario);
 	}

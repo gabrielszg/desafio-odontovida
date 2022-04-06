@@ -18,25 +18,25 @@ public class FuncionarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Funcionario funcionario;
-	
+
 	@Inject
 	private FuncionarioService funcionarioService;
-	
+
 	public FuncionarioBean() {
 		limpar();
 	}
-	
+
 	public void limpar() {
 		funcionario = new Funcionario();
 	}
-	
+
 	public void salvar() {
 		try {
 			this.funcionario = funcionarioService.salvar(this.funcionario);
 			limpar();
-			
+
 			FacesUtil.addInfoMessage("Funcionário cadastrado com sucesso!");
-		}catch (CadastroException ce) {
+		} catch (CadastroException ce) {
 			FacesUtil.addErrorMessage(ce.getMessage());
 		}
 	}

@@ -22,8 +22,8 @@ public class FuncionarioConverter implements Converter {
 		Funcionario retorno = null;
 		
 		if (StringUtils.isNotEmpty(value)) {
-			Integer idFuncionario = new Integer(value);
-			retorno = funcionarios.porId(idFuncionario);
+			String cpf = new String(value);
+			retorno = funcionarios.porCpf(cpf);
 		}
 		
 		return retorno;
@@ -33,7 +33,7 @@ public class FuncionarioConverter implements Converter {
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if (value != null) {
 			Funcionario funcionario = (Funcionario) value;
-			return funcionario.getIdFuncionario() == null ? null : funcionario.getIdFuncionario().toString();
+			return funcionario.getCpf() == null ? null : funcionario.getCpf();
 		}
 		return "";
 	}
