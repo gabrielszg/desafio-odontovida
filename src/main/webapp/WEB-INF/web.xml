@@ -8,7 +8,7 @@
 	<display-name>Teste</display-name>
 
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>CadastrarFuncionario.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

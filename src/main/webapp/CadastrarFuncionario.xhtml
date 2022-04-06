@@ -50,7 +50,7 @@
 
 	<p:messages closable="true" />
 	
-	<h:panelGrid columns="2" cellpadding="3">
+	<p:panelGrid columns="2" cellpadding="3">
 	
 		<p:outputLabel value="Nome" for="nome" />
 		<p:inputText id="nome" value="#{funcionarioBean.funcionario.nome}"
@@ -71,10 +71,11 @@
 			thousandSeparator="." minValue="0" maxValue="1000000000.00" value="#{funcionarioBean.funcionario.salario}"
 			required="true" />
 
-		<p:commandButton value="Cadastrar" id="submit"
-			action="#{funcionarioBean.adicionaFuncionario}" icon="ui-icon-disk"
-			iconPos="right" update="form" />
-	</h:panelGrid>
+	</p:panelGrid>
+	
+	<p:commandButton value="Cadastrar" id="submit"
+			action="#{funcionarioBean.salvar}" icon="ui-icon-disk"
+			iconPos="right" update="@form" />
 </h:form>
 </html>
 

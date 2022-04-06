@@ -1,7 +1,6 @@
 package br.com.teste.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,19 +18,20 @@ public class Funcionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int idFuncionario;
+	private Integer idFuncionario;
 	private String nome;
 	private Date dataNascimento;
 	private String cpf;
-	private BigDecimal salario;
+	private Double salario;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getIdFuncionario() {
+	@Column(precision = 11)
+	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
 
-	public void setIdFuncionario(int idFuncionario) {
+	public void setIdFuncionario(Integer idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
 
@@ -55,7 +55,7 @@ public class Funcionario implements Serializable {
 	}
 
 	// @CPF
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, length = 14)
 	public String getCpf() {
 		return cpf;
 	}
@@ -65,11 +65,11 @@ public class Funcionario implements Serializable {
 	}
 
 	@Column(nullable = false, precision = 10, scale = 2)
-	public BigDecimal getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
 
-	public void setSalario(BigDecimal salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 }
