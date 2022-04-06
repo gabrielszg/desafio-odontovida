@@ -12,64 +12,26 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-
-	private Integer idFuncionario;
-	private String nome;
-	private Date dataNascimento;
-	private String cpf;
-	private Double salario;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(precision = 11)
-	public Integer getIdFuncionario() {
-		return idFuncionario;
-	}
-
-	public void setIdFuncionario(Integer idFuncionario) {
-		this.idFuncionario = idFuncionario;
-	}
-
+	private Integer idFuncionario;
 	@Column(nullable = false, length = 100)
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+	private String nome;
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	// @CPF
+	private Date dataNascimento;
 	@Column(nullable = false, unique = true, length = 14)
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
+	private String cpf;
 	@Column(nullable = false, precision = 10, scale = 2)
-	public Double getSalario() {
-		return salario;
-	}
-
-	public void setSalario(Double salario) {
-		this.salario = salario;
-	}
+	private Double salario;
+	
 }
