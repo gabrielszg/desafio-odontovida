@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "funcionario")
@@ -34,7 +37,8 @@ public class Funcionario implements Serializable {
 		this.idFuncionario = idFuncionario;
 	}
 
-	@Column(nullable = false, length = 100)
+	@NotBlank
+	@Column(length = 100)
 	public String getNome() {
 		return nome;
 	}
@@ -43,8 +47,8 @@ public class Funcionario implements Serializable {
 		this.nome = nome;
 	}
 
+	@NotNull
 	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -63,7 +67,8 @@ public class Funcionario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	@Column(nullable = false, precision = 10, scale = 2)
+	@NotNull
+	@Column(precision = 10, scale = 2)
 	public Double getSalario() {
 		return salario;
 	}

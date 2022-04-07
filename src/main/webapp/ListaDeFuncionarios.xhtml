@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>Funcionários</title>
+</h:head>
+
+<h:body>
+
+	<div class="center">
+	<h:form>
+
+		<h:panelGroup styleClass="center">
+			<p:dataTable value="" var="" id="table">
+				<p:column headerText="ID">
+					<h:outputText value="#{f.idFuncionario}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{f.nome}" />
+				</p:column>
+				<p:column headerText="Data de Nascimento">
+					<h:outputText value="#{f.dataNascimento}" />
+				</p:column>
+				<p:column headerText="CPF">
+					<h:outputText value="#{f.cpf}" />
+				</p:column>
+				<p:column headerText="Salário">
+					<h:outputText value="#{f.salario}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
+	</h:form>
+	</div>
+</h:body>
+</html>

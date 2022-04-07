@@ -18,10 +18,10 @@ public class FuncionarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Funcionario funcionario;
-
+	
 	@Inject
 	private FuncionarioService funcionarioService;
-
+	
 	public FuncionarioBean() {
 		limpar();
 	}
@@ -40,7 +40,7 @@ public class FuncionarioBean implements Serializable {
 			FacesUtil.addErrorMessage(ce.getMessage());
 		}
 	}
-
+	
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
