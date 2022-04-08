@@ -1,12 +1,15 @@
 package br.com.teste.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.teste.model.Funcionario;
+import br.com.teste.repository.Funcionarios;
+import br.com.teste.repository.filter.FuncionarioFilter;
 import br.com.teste.service.CadastroException;
 import br.com.teste.service.FuncionarioService;
 import br.com.teste.util.jsf.FacesUtil;
@@ -22,8 +25,17 @@ public class FuncionarioBean implements Serializable {
 	@Inject
 	private FuncionarioService funcionarioService;
 	
+	@Inject
+	private Funcionarios funcionarios;
+	
+	private FuncionarioFilter filtro;
+	
+	private List<Funcionario> funcionarioList;
+	
+
 	public FuncionarioBean() {
-		limpar();
+		filtro = new FuncionarioFilter();
+		funcionario = new Funcionario();
 	}
 
 	public void limpar() {
@@ -37,6 +49,22 @@ public class FuncionarioBean implements Serializable {
 
 			FacesUtil.addInfoMessage("Funcionário cadastrado com sucesso!");
 		} catch (CadastroException ce) {
+			FacesUtil.addErrorMessage(ce.getMessage());
+		}
+	}
+	
+	public void pesquisar() {
+		funcionarioList = funcionarios.buscarTodos(filtro);
+	}
+	
+	public void excluir() {
+		try {
+		    funcionarios.remover(funcionario);
+			funcionarioList.remove(funcionario);
+			
+			FacesUtil.addInfoMessage("Funcionário " + funcionario.getCpf() 
+			+ " excluído com sucesso.");
+		}catch (CadastroException ce) {
 			FacesUtil.addErrorMessage(ce.getMessage());
 		}
 	}
@@ -56,4 +84,13 @@ public class FuncionarioBean implements Serializable {
 	public void setFuncionarioService(FuncionarioService funcionarioService) {
 		this.funcionarioService = funcionarioService;
 	}
+	
+	public List<Funcionario> getFuncionarioList() {
+		return funcionarioList;
+	}
+
+	public FuncionarioFilter getFiltro() {
+		return filtro;
+	}
+	
 }
