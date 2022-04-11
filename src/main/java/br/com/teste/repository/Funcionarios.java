@@ -48,19 +48,17 @@ public class Funcionarios implements Serializable {
 	@Transactional
 	public void remover(Funcionario funcionario) throws CadastroException {
 		try {
-			funcionario = porCpf(funcionario.getCpf());
+			funcionario = porId(funcionario.getIdFuncionario());
 			manager.remove(funcionario);
 			manager.flush();
-		}catch (PersistenceException e) {
-			throw new CadastroException("Funcionario não pode ser excluído");
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+			throw new CadastroException("Funcionario não pode ser excluído.");
 		}
-	}
-	
-	public Funcionario porCpf(String cpf) {
-		return manager.find(Funcionario.class, cpf);
+
 	}
 
-//	public Funcionario porId(Integer idFuncionario) {
-//		return manager.find(Funcionario.class, idFuncionario);
-//	}
+	public Funcionario porId(Integer idFuncionario) {
+		return manager.find(Funcionario.class, idFuncionario);
+	}
 }

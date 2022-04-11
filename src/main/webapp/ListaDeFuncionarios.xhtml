@@ -58,6 +58,7 @@
 					<p:column headerText="CPF">
 						<h:outputText value="#{f.cpf}" />
 					</p:column>
+					
 					<p:column headerText="Salário">
 						<h:outputText value="#{f.salario}">
 							<f:convertNumber type="currency" />
@@ -65,7 +66,9 @@
 					</p:column>
 					
 					<p:column headerText="">
-						<p:commandButton value="Excluir" action="#{funcionarioBean.excluir}" update="form table" process="@this" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{funcionarioBean.excluir}" update=":form:table" process="@this" >
+							<f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{f}" />
+					</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</h:panelGroup>

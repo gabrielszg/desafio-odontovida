@@ -58,15 +58,18 @@ public class FuncionarioBean implements Serializable {
 	}
 	
 	public void excluir() {
+		System.out.println("FuncionarioBean.excluir()");
+		
 		try {
-		    funcionarios.remover(funcionario);
+			funcionarios.remover(funcionario);
 			funcionarioList.remove(funcionario);
 			
 			FacesUtil.addInfoMessage("Funcionário " + funcionario.getCpf() 
 			+ " excluído com sucesso.");
-		}catch (CadastroException ce) {
-			FacesUtil.addErrorMessage(ce.getMessage());
+		} catch (CadastroException e) {
+			e.printStackTrace();
 		}
+		
 	}
 	
 	public Funcionario getFuncionario() {
@@ -89,8 +92,11 @@ public class FuncionarioBean implements Serializable {
 		return funcionarioList;
 	}
 
+	public void setFuncionarioList(List<Funcionario> funcionarioList) {
+		this.funcionarioList = funcionarioList;
+	}
+
 	public FuncionarioFilter getFiltro() {
 		return filtro;
 	}
-	
 }
