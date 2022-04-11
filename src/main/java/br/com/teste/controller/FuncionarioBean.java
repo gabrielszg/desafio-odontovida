@@ -3,7 +3,7 @@ package br.com.teste.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,7 +15,7 @@ import br.com.teste.service.FuncionarioService;
 import br.com.teste.util.jsf.FacesUtil;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class FuncionarioBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

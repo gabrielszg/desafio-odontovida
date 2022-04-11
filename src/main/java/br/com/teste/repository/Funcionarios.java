@@ -57,7 +57,7 @@ public class Funcionarios implements Serializable {
 		}
 
 	}
-
+	
 	public Funcionario porId(Integer idFuncionario) {
 		return manager.find(Funcionario.class, idFuncionario);
 	}

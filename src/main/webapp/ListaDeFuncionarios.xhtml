@@ -39,36 +39,42 @@
 			<div id="formTable">
 			<h:panelGroup styleClass="center">
 
-				<p:dataTable value="#{funcionarioBean.funcionarioList}" var="f"
+				<p:dataTable value="#{funcionarioBean.funcionarioList}" var="funcionario"
 					id="table">
 					<p:column headerText="ID">
-						<h:outputText value="#{f.idFuncionario}" />
+						<h:outputText value="#{funcionario.idFuncionario}" />
 					</p:column>
 					
 					<p:column headerText="Nome">
-						<h:outputText value="#{f.nome}" />
+						<h:outputText value="#{funcionario.nome}" />
 					</p:column>
 					
 					<p:column headerText="Data de Nascimento">
-						<h:outputText value="#{f.dataNascimento}">
+						<h:outputText value="#{funcionario.dataNascimento}">
 							<f:convertDateTime type="date" />
 						</h:outputText>
 					</p:column>
 					
 					<p:column headerText="CPF">
-						<h:outputText value="#{f.cpf}" />
+						<h:outputText value="#{funcionario.cpf}" />
 					</p:column>
 					
 					<p:column headerText="Salário">
-						<h:outputText value="#{f.salario}">
+						<h:outputText value="#{funcionario.salario}">
 							<f:convertNumber type="currency" />
 						</h:outputText>
 					</p:column>
 					
-					<p:column headerText="">
+					<p:column headerText="Excluir">
 					<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{funcionarioBean.excluir}" update=":form:table" process="@this" >
 							<f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{f}" />
 					</p:commandButton>
+					</p:column>
+					
+					<p:column headerText="Editar">
+					<p:button outcome="/CadastrarFuncionario" icon="ui-icon-pencil" title="Editar">
+						<f:param name="funcionario" value="#{funcionario.idFuncionario}" />
+					</p:button>
 					</p:column>
 				</p:dataTable>
 			</h:panelGroup>
