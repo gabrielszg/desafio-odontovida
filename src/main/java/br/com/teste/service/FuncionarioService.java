@@ -1,7 +1,6 @@
 package br.com.teste.service;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,5 +24,9 @@ public class FuncionarioService implements Serializable {
 //		}
 		
 		return funcionarios.guardar(funcionario);
+	}
+
+	public Funcionario findById(Integer idFuncionario) {
+		return funcionarios.findById(idFuncionario);
 	}
 }

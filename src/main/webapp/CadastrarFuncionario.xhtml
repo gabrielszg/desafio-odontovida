@@ -9,10 +9,6 @@
 
 <h:head>
 
-	<f:metadata>
-		<o:viewParam name="funcionario" value="#{funcionarioBean.funcionario}" />
-	</f:metadata>
-
 	<h:outputStylesheet library="css" name="styles.css" />
 	<title>OdontoVida</title>
 
@@ -80,35 +76,35 @@
 			<p:panelGrid columns="2">
 
 				<f:facet name="header">
-					<p:outputLabel value="Cadastro de Funcionário"
+					<p:outputLabel value="#{cadastroFuncionarioBean.newEmployer ? 'Cadastro de Funcionário' : 'Editando Funcionario'}"
 						style="font-size: 22px" />
 				</f:facet>
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{funcionarioBean.funcionario.nome}"
+				<p:inputText id="nome" value="#{cadastroFuncionarioBean.funcionario.nome}"
 					required="true">
 					<f:validateRegex pattern="[^\d]+" />
 				</p:inputText>
 
 				<p:outputLabel value="Data de nascimento" for="dataNascimento" />
 				<p:calendar id="dataNascimento"
-					value="#{funcionarioBean.funcionario.dataNascimento}"
+					value="#{cadastroFuncionarioBean.funcionario.dataNascimento}"
 					required="true" locale="pt" pattern="dd/MM/yyyy" navigator="true"
 					mindate="01/01/1900" maxdate="LOCAL_DATE" showButtonPanel="true"
 					mask="true" />
 
 				<p:outputLabel value="CPF" for="cpf" />
-				<p:inputMask id="cpf" value="#{funcionarioBean.funcionario.cpf}"
-					required="true" mask="999.999.999-99" />
+				<p:inputMask id="cpf" value="#{cadastroFuncionarioBean.funcionario.cpf}"
+					required="true" mask="999.999.999-99" readonly="#{!cadastroFuncionarioBean.newEmployer}"/>
 
 				<p:outputLabel value="Salário" for="salario" />
 				<p:inputNumber id="salario" symbol="R$" decimalSeparator=","
 					thousandSeparator="." minValue="0" maxValue="1000000000.00"
-					value="#{funcionarioBean.funcionario.salario}" required="true" />
+					value="#{cadastroFuncionarioBean.funcionario.salario}" required="true" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Cadastrar" id="btn"
-						action="#{funcionarioBean.salvar}" icon="ui-icon-disk"
+					<p:commandButton value="#{cadastroFuncionarioBean.newEmployer ? 'Cadastrar' : 'Atualizar'}" id="btn"
+						action="#{cadastroFuncionarioBean.salvar}" icon="ui-icon-disk"
 						iconPos="right" update="form" />
 				</f:facet>
 			</p:panelGrid>
