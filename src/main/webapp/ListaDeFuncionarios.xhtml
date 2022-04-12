@@ -16,20 +16,22 @@
 
 	<div class="center">
 		<h:form id="form">
+		
+		<p:messages />
 
 			<p:panelGrid columns="2">
 				<p:outputLabel value="CPF" for="cpf" />
-				<p:inputMask id="cpf" value="#{funcionarioBean.filtro.cpf}"
+				<p:inputMask id="cpf" value="#{pesquisaFuncionarioBean.filtro.cpf}"
 					mask="999.999.999-99" />
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{funcionarioBean.filtro.nome}">
+				<p:inputText id="nome" value="#{pesquisaFuncionarioBean.filtro.nome}">
 					<f:validateRegex pattern="[^\d]+" />
 				</p:inputText>
 
 				<f:facet name="footer">
 					<p:commandButton value="Pesquisar"
-						action="#{funcionarioBean.pesquisar}" update="@form" />
+						action="#{pesquisaFuncionarioBean.pesquisar}" update="@form" />
 				</f:facet>
 			</p:panelGrid>
 
@@ -39,7 +41,7 @@
 			<div id="formTable">
 			<h:panelGroup styleClass="center">
 
-				<p:dataTable value="#{funcionarioBean.funcionarioList}" var="funcionario"
+				<p:dataTable value="#{pesquisaFuncionarioBean.funcionarioList}" var="funcionario"
 					id="table">
 					<p:column headerText="ID">
 						<h:outputText value="#{funcionario.idFuncionario}" />
@@ -65,17 +67,19 @@
 						</h:outputText>
 					</p:column>
 					
-					<p:column headerText="Excluir">
-					<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{funcionarioBean.excluir}" update=":form:table" process="@this" >
-							<f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{f}" />
-					</p:commandButton>
-					</p:column>
-					
 					<p:column headerText="Editar">
 					<p:button outcome="/CadastrarFuncionario" icon="ui-icon-pencil" title="Editar">
 						<f:param name="funcionario" value="#{funcionario.idFuncionario}" />
 					</p:button>
 					</p:column>
+					
+					<p:column headerText="Excluir">
+					<p:commandButton icon="ui-icon-trash" title="Excluir" action="#{pesquisaFuncionarioBean.excluir}" update=":form:table" process="@this" >
+							<f:setPropertyActionListener target="#{pesquisaFuncionarioBean.funcionarioSelecionado}" value="#{funcionario}" />
+					</p:commandButton>
+					</p:column>
+					
+					
 				</p:dataTable>
 			</h:panelGroup>
 			</div>

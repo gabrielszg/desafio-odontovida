@@ -40,5 +40,4 @@ public class FuncionarioConverter implements Converter {
 		
 		return "";
 	}
-
 }
