@@ -1,12 +1,13 @@
 package br.com.teste.service;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 import javax.inject.Inject;
 
 import br.com.teste.model.Funcionario;
 import br.com.teste.repository.Funcionarios;
+import br.com.teste.util.date.DateValidator;
 import br.com.teste.util.jpa.Transactional;
 
 public class FuncionarioService implements Serializable {
@@ -24,6 +25,14 @@ public class FuncionarioService implements Serializable {
 //			throw new CadastroException("Já existe funcionário cadastrado com esse CPF.");
 //		}
 		
-		return funcionarios.guardar(funcionario);
+		if (DateValidator.getAge(funcionario.getDataNascimento()) >= 18) {
+			return funcionarios.guardar(funcionario);
+		}else {
+			throw new CadastroException("Funcionario não é maior que 18 anos");
+		}
+	}
+	
+	public Funcionario findById(Integer idFuncionario) {
+		return funcionarios.findById(idFuncionario);
 	}
 }

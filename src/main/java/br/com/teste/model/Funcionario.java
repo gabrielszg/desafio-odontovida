@@ -1,6 +1,7 @@
 package br.com.teste.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	private Integer idFuncionario;

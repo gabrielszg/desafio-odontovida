@@ -48,7 +48,7 @@ public class Funcionarios implements Serializable {
 	@Transactional
 	public void remover(Funcionario funcionario) throws CadastroException {
 		try {
-			funcionario = porId(funcionario.getIdFuncionario());
+			funcionario = findById(funcionario.getIdFuncionario());
 			manager.remove(funcionario);
 			manager.flush();
 		} catch (PersistenceException e) {
@@ -59,6 +59,10 @@ public class Funcionarios implements Serializable {
 	}
 	
 	public Funcionario porId(Integer idFuncionario) {
+		return manager.find(Funcionario.class, idFuncionario);
+	}
+
+	public Funcionario findById(Integer idFuncionario) {
 		return manager.find(Funcionario.class, idFuncionario);
 	}
 }
