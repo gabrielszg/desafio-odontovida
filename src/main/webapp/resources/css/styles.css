@@ -3,7 +3,7 @@
 body {
 	font-size: 16px;
 	font-family: Roboto, sans-serif;
-	margin: 0;
+	margin: 0px;
 	background: #d3d3d3;
 }
 
@@ -19,21 +19,21 @@ h1 {
 
 #header {
 	width: 100%;
-	height: 15vh;
+	height: 20vh;
 	border-radius: 50px;
 }
 
 #form {
 	width: 50%;
-	border: 2px solid #d3d3d3;	
+	border: 2px solid #d3d3d3;
 }
 
 #form table {
-	width: 100%;
+	width: 90%;
 }
 
 #form table input {
-	width: 99%;
+	width: 160px;
 }
 
 #form button {
@@ -41,7 +41,7 @@ h1 {
 	border: 2px solid grey;
 	color: black;
 	border-radius: 50px;
-	width: 120px;
+	width: 130px;
 }
 
 #table {
@@ -55,8 +55,4 @@ h1 {
 	text-shadow: none;
 	height: 30px;
 	box-shadow: none;
-}
-
-#formTable {
-	width: 1200px;
 }

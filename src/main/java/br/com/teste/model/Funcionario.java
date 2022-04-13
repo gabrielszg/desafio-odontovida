@@ -1,7 +1,6 @@
 package br.com.teste.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,6 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "funcionario")
@@ -59,7 +59,7 @@ public class Funcionario implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	//@CPF
+	@CPF
 	@Column(nullable = false, unique = true, length = 14)
 	public String getCpf() {
 		return cpf;

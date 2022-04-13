@@ -1,7 +1,6 @@
 package br.com.teste.service;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -19,11 +18,6 @@ public class FuncionarioService implements Serializable {
 	
 	@Transactional
 	public Funcionario salvar(Funcionario funcionario) throws CadastroException {
-//		Funcionario funcionarioExistente = funcionarios.porCpf(funcionario.getCpf());
-//		
-//		if (funcionarioExistente != null && !funcionarioExistente.equals(funcionario)) {
-//			throw new CadastroException("Já existe funcionário cadastrado com esse CPF.");
-//		}
 		
 		if (DateValidator.getAge(funcionario.getDataNascimento()) >= 18) {
 			return funcionarios.guardar(funcionario);

@@ -50,7 +50,7 @@
 
 	<div id="header" class="center">
 		<h:graphicImage id="logo" library="images" name="logo-odontovida.png"
-			style="width: 400px"></h:graphicImage>
+			style="width: 400px" />
 	</div>
 
 	<h:form>
@@ -58,7 +58,7 @@
 			<p:submenu label="Funcionários">
 				<p:menuitem value="Cadastrar Novo" url="/CadastrarFuncionario.xhtml" />
 				<p:menuitem value="Lista de Funcionários"
-					url="/ListaDeFuncionarios.xhtml" />
+					url="/ListaDeFuncionarios.xhtml" target="_blank"/>
 			</p:submenu>
 		</p:menubar>
 	</h:form>
@@ -69,10 +69,10 @@
 	</div>
 
 	<div class="center">
-		<h:form id="form">
-
-			<p:messages closable="true" />
-
+		<h:form id="form" >
+		
+			<p:messages closable="true" styleClass="center" />
+			
 			<p:panelGrid columns="2">
 
 				<f:facet name="header">
@@ -82,7 +82,7 @@
 
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{cadastroFuncionarioBean.funcionario.nome}"
-					required="true">
+					required="true" style="width: 400px">
 					<f:validateRegex pattern="[^\d]+" />
 				</p:inputText>
 
@@ -95,11 +95,11 @@
 
 				<p:outputLabel value="CPF" for="cpf" />
 				<p:inputMask id="cpf" value="#{cadastroFuncionarioBean.funcionario.cpf}"
-					required="true" mask="999.999.999-99" readonly="#{!cadastroFuncionarioBean.newEmployer}"/>
+					required="true" mask="999.999.999-99" readonly="#{!cadastroFuncionarioBean.newEmployer}" style="width: 130px"/>
 
 				<p:outputLabel value="Salário" for="salario" />
 				<p:inputNumber id="salario" symbol="R$" decimalSeparator=","
-					thousandSeparator="." minValue="0" maxValue="1000000000.00"
+					thousandSeparator="." minValue="0" maxValue="10000000000.00"
 					value="#{cadastroFuncionarioBean.funcionario.salario}" required="true" />
 
 				<f:facet name="footer">
