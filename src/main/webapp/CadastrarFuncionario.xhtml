@@ -1,115 +1,67 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/LayoutStandard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:o="http://omnifaces.org/ui">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
+	<ui:define name="title">Cadastro de Funcionario</ui:define>
 
-	<h:outputStylesheet library="css" name="styles.css" />
-	<title>OdontoVida</title>
+	<ui:define name="body">
 
-	<script type="text/javascript">
-		PrimeFaces.locales['pt'] = {
-			closeText : 'Fechar',
-			prevText : 'Anterior',
-			nextText : 'Próximo',
-			currentText : 'Começo',
-			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
-					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
-					'Novembro', 'Dezembro' ],
-			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
-			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
-					'Sexta', 'Sábado' ],
-			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
-			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
-			weekHeader : 'Semana',
-			firstDay : 1,
-			isRTL : false,
-			showMonthAfterYear : false,
-			yearSuffix : '',
-			timeOnlyTitle : 'Só Horas',
-			timeText : 'Tempo',
-			hourText : 'Hora',
-			minuteText : 'Minuto',
-			secondText : 'Segundo',
-			currentText : 'Data Atual',
-			ampm : false,
-			month : 'Mês',
-			week : 'Semana',
-			day : 'Dia',
-			allDayText : 'Todo Dia'
-		};
-	</script>
-</h:head>
-<h:body>
+		<div id="header" class="center">
+			<p:graphicImage id="photo" library="images" name="funcionario.png"
+				style="width: 150px" />
+		</div>
 
-	<div id="header" class="center">
-		<h:graphicImage id="logo" library="images" name="logo-odontovida.png"
-			style="width: 400px" />
-	</div>
+		<div class="center">
+			<h:form id="form">
 
-	<h:form>
-		<p:menubar>
-			<p:submenu label="Funcionários">
-				<p:menuitem value="Cadastrar Novo" url="/CadastrarFuncionario.xhtml" />
-				<p:menuitem value="Lista de Funcionários"
-					url="/ListaDeFuncionarios.xhtml" target="_blank"/>
-			</p:submenu>
-		</p:menubar>
-	</h:form>
+				<p:messages closable="true" styleClass="center" />
 
-	<div id="header" class="center">
-		<h:graphicImage id="cadastro" library="images" name="funcionario.png"
-			style="width: 150px "></h:graphicImage>
-	</div>
+				<p:panelGrid columns="2">
 
-	<div class="center">
-		<h:form id="form" >
-		
-			<p:messages closable="true" styleClass="center" />
-			
-			<p:panelGrid columns="2">
+					<f:facet name="header">
+						<p:outputLabel
+							value="#{cadastroFuncionarioBean.newEmployer ? 'Cadastro de Funcionário' : 'Editando Funcionario'}"
+							style="font-size: 22px" />
+					</f:facet>
 
-				<f:facet name="header">
-					<p:outputLabel value="#{cadastroFuncionarioBean.newEmployer ? 'Cadastro de Funcionário' : 'Editando Funcionario'}"
-						style="font-size: 22px" />
-				</f:facet>
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome"
+						value="#{cadastroFuncionarioBean.funcionario.nome}"
+						required="true" style="width: 400px">
+						<f:validateRegex pattern="[^\d]+" />
+					</p:inputText>
 
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{cadastroFuncionarioBean.funcionario.nome}"
-					required="true" style="width: 400px">
-					<f:validateRegex pattern="[^\d]+" />
-				</p:inputText>
+					<p:outputLabel value="Data de nascimento" for="dataNascimento" />
+					<p:calendar id="dataNascimento"
+						value="#{cadastroFuncionarioBean.funcionario.dataNascimento}"
+						required="true" locale="pt" pattern="dd/MM/yyyy" navigator="true"
+						mindate="01/01/1900" maxdate="LOCAL_DATE" showButtonPanel="true"
+						mask="true" />
 
-				<p:outputLabel value="Data de nascimento" for="dataNascimento" />
-				<p:calendar id="dataNascimento"
-					value="#{cadastroFuncionarioBean.funcionario.dataNascimento}"
-					required="true" locale="pt" pattern="dd/MM/yyyy" navigator="true"
-					mindate="01/01/1900" maxdate="LOCAL_DATE" showButtonPanel="true"
-					mask="true" />
+					<p:outputLabel value="CPF" for="cpf" />
+					<p:inputMask id="cpf"
+						value="#{cadastroFuncionarioBean.funcionario.cpf}" required="true"
+						mask="999.999.999-99"
+						readonly="#{!cadastroFuncionarioBean.newEmployer}"
+						style="width: 130px" />
 
-				<p:outputLabel value="CPF" for="cpf" />
-				<p:inputMask id="cpf" value="#{cadastroFuncionarioBean.funcionario.cpf}"
-					required="true" mask="999.999.999-99" readonly="#{!cadastroFuncionarioBean.newEmployer}" style="width: 130px"/>
+					<p:outputLabel value="Salário" for="salario" />
+					<p:inputNumber id="salario" symbol="R$" decimalSeparator=","
+						thousandSeparator="." minValue="0" maxValue="10000000000.00"
+						value="#{cadastroFuncionarioBean.funcionario.salario}"
+						required="true" />
 
-				<p:outputLabel value="Salário" for="salario" />
-				<p:inputNumber id="salario" symbol="R$" decimalSeparator=","
-					thousandSeparator="." minValue="0" maxValue="10000000000.00"
-					value="#{cadastroFuncionarioBean.funcionario.salario}" required="true" />
-
-				<f:facet name="footer">
-					<p:commandButton value="#{cadastroFuncionarioBean.newEmployer ? 'Cadastrar' : 'Atualizar'}" id="btn"
-						action="#{cadastroFuncionarioBean.salvar}" icon="ui-icon-disk"
-						iconPos="right" update="@form" />
-				</f:facet>
-			</p:panelGrid>
-		</h:form>
-	</div>
-</h:body>
-</html>
-
+					<f:facet name="footer">
+						<p:commandButton
+							value="#{cadastroFuncionarioBean.newEmployer ? 'Cadastrar' : 'Atualizar'}"
+							id="btn" action="#{cadastroFuncionarioBean.salvar}"
+							icon="ui-icon-disk" iconPos="right" update="@form" />
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

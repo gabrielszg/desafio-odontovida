@@ -1,114 +1,109 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/LayoutStandard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="styles.css" />
-	<title>Funcionários</title>
-</h:head>
+	<ui:define name="title">Pesquisa de Funcionarios</ui:define>
 
-<h:body>
+	<ui:define name="body">
 
-	<div id="header" class="center">
-		<h:graphicImage id="logo" library="images" name="logo-odontovida.png"
-			style="width: 400px" />
-	</div>
+		<div class="center" style="margin-top: 10px">
+			<h:form id="form">
 
-	<div class="center">
-		<h:form id="form">
+				<p:messages closable="true" styleClass="center" />
 
-			<p:panelGrid columns="2">
+				<p:panelGrid columns="2">
 
-				<f:facet name="header">
-					<p:outputLabel value="Pesquisar Funcionários" style="font-size: 22px" />
-				</f:facet>
+					<f:facet name="header">
+						<p:outputLabel value="Pesquisar Funcionários"
+							style="font-size: 22px" />
+					</f:facet>
 
-				<p:outputLabel value="CPF" />
-				<p:inputMask id="cpf" value="#{pesquisaFuncionarioBean.filtro.cpf}"
-					mask="999.999.999-99" style="width: 130px" />
+					<p:outputLabel value="CPF" />
+					<p:inputMask id="cpf" value="#{pesquisaFuncionarioBean.filtro.cpf}"
+						mask="999.999.999-99" style="width: 130px" />
 
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome"
-					value="#{pesquisaFuncionarioBean.filtro.nome}" style="width: 400px">
-					<f:validateRegex pattern="[^\d]+" />
-				</p:inputText>
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome"
+						value="#{pesquisaFuncionarioBean.filtro.nome}"
+						style="width: 400px">
+						<f:validateRegex pattern="[^\d]+" />
+					</p:inputText>
 
-				<f:facet name="footer">
-					<p:commandButton value="Pesquisar"
-						action="#{pesquisaFuncionarioBean.pesquisar}" update="@form" />
+					<f:facet name="footer">
+						<p:commandButton value="Pesquisar"
+							action="#{pesquisaFuncionarioBean.pesquisar}" update="@form" icon="ui-icon-search" iconPos="right" />
 
-					<p:button value="voltar" outcome="/CadastrarFuncionario" />
-				</f:facet>
-			</p:panelGrid>
+						<p:button value="voltar" outcome="/CadastrarFuncionario" />
+					</f:facet>
+				</p:panelGrid>
 
-			<br />
-			<br />
+				<br />
+				<br />
 
-			<div class="center">
-				<h:panelGroup styleClass="center">
+				<div class="center">
+					<h:panelGroup styleClass="center">
 
 
-					<p:dataTable value="#{pesquisaFuncionarioBean.funcionarioList}"
-						var="funcionario" id="table"
-						emptyMessage="Nenhum funcionário encontrado" paginator="true"
-						rows="10" paginatorAlwaysVisible="false"
-						paginatorPosition="bottom">
+						<p:dataTable value="#{pesquisaFuncionarioBean.funcionarioList}"
+							var="funcionario" id="table"
+							emptyMessage="Nenhum funcionário encontrado" paginator="true"
+							rows="10" paginatorAlwaysVisible="false"
+							paginatorPosition="bottom">
 
-						<p:column headerText="ID" style="text-align: center; width: 80px">
-							<h:outputText value="#{funcionario.idFuncionario}" />
-						</p:column>
+							<p:column headerText="ID" style="text-align: center; width: 50px">
+								<h:outputText value="#{funcionario.idFuncionario}" />
+							</p:column>
 
-						<p:column headerText="Nome"
-							style="text-align: center; width: 130px">
-							<h:outputText value="#{funcionario.nome}" />
-						</p:column>
+							<p:column headerText="Nome"
+								style="text-align: center; width: 130px">
+								<h:outputText value="#{funcionario.nome}" />
+							</p:column>
 
-						<p:column headerText="Data de Nascimento"
-							style="text-align: center; width: 100px">
-							<h:outputText value="#{funcionario.dataNascimento}">
-								<f:convertDateTime type="date" />
-							</h:outputText>
-						</p:column>
+							<p:column headerText="Data de Nascimento"
+								style="text-align: center; width: 100px">
+								<h:outputText value="#{funcionario.dataNascimento}">
+									<f:convertDateTime type="date" />
+								</h:outputText>
+							</p:column>
 
-						<p:column headerText="CPF"
-							style="text-align: center; width: 130px">
-							<h:outputText value="#{funcionario.cpf}" />
-						</p:column>
+							<p:column headerText="CPF"
+								style="text-align: center; width: 130px">
+								<h:outputText value="#{funcionario.cpf}" />
+							</p:column>
 
-						<p:column headerText="Salário"
-							style="text-align: center; width: 120px">
-							<h:outputText value="#{funcionario.salario}">
-								<f:convertNumber type="currency" />
-							</h:outputText>
-						</p:column>
+							<p:column headerText="Salário"
+								style="text-align: center; width: 120px">
+								<h:outputText value="#{funcionario.salario}">
+									<f:convertNumber type="currency" />
+								</h:outputText>
+							</p:column>
 
-						<p:column headerText="Editar"
-							style="text-align: center; width: 80px">
-							<p:button outcome="/CadastrarFuncionario" icon="ui-icon-pencil"
-								title="Editar" style="width: 50px">
-								<f:param name="funcionario" value="#{funcionario.idFuncionario}" />
-							</p:button>
-						</p:column>
+							<p:column headerText="Editar"
+								style="text-align: center; width: 50px">
+								<p:button outcome="/CadastrarFuncionario" icon="ui-icon-pencil"
+									title="Editar" style="width: 50px">
+									<f:param name="funcionario"
+										value="#{funcionario.idFuncionario}" />
+								</p:button>
+							</p:column>
 
-						<p:column headerText="Excluir"
-							style="text-align: center; width: 80px">
-							<p:commandButton icon="ui-icon-trash" title="Excluir"
-								action="#{pesquisaFuncionarioBean.excluir}" update=":form:table"
-								process="@this" style="width: 50px">
-								<f:setPropertyActionListener
-									target="#{pesquisaFuncionarioBean.funcionarioSelecionado}"
-									value="#{funcionario}" />
-							</p:commandButton>
-						</p:column>
-					</p:dataTable>
-				</h:panelGroup>
-			</div>
-		</h:form>
-	</div>
-</h:body>
-</html>
+							<p:column headerText="Excluir"
+								style="text-align: center; width: 50px">
+								<p:commandButton icon="ui-icon-trash" title="Excluir"
+									action="#{pesquisaFuncionarioBean.excluir}" update="form table"
+									process="@this" style="width: 50px">
+									<f:setPropertyActionListener
+										target="#{pesquisaFuncionarioBean.funcionarioSelecionado}"
+										value="#{funcionario}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

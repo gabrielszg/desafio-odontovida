@@ -48,9 +48,17 @@ public class CadastroFuncionarioBean implements Serializable {
 
 	public void salvar() {
 		try {
-			this.funcionario = funcionarioService.salvar(this.funcionario);
 			
-			FacesUtil.addInfoMessage("Funcionário cadastrado com sucesso!");
+			if (funcionario.getIdFuncionario() == null) {
+				this.funcionario = funcionarioService.salvar(this.funcionario);
+				
+				FacesUtil.addInfoMessage("Funcionário cadastrado com sucesso!");
+			}else {
+				this.funcionario = funcionarioService.salvar(this.funcionario);
+				
+				FacesUtil.addInfoMessage("Funcionário " + funcionario.getNome() + " atualizado com sucesso");
+			}
+			
 		} catch (CadastroException ce) {
 			FacesUtil.addErrorMessage("Erro ao cadastrar o funcionario. Idade menor que 18 anos!");
 			ce.printStackTrace();

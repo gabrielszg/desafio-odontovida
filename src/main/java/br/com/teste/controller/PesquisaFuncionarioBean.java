@@ -42,7 +42,7 @@ public class PesquisaFuncionarioBean implements Serializable {
 			funcionarios.remover(funcionarioSelecionado);
 			funcionarioList.remove(funcionarioSelecionado);
 			
-			FacesUtil.addInfoMessage("Funcionário " + funcionarioSelecionado.getCpf() 
+			FacesUtil.addInfoMessage("Funcionário " + funcionarioSelecionado.getNome() 
 			+ " excluído com sucesso.");
 		} catch (CadastroException e) {
 			e.printStackTrace();
