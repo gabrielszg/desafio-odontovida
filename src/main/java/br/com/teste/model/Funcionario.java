@@ -59,7 +59,7 @@ public class Funcionario implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	//@CPF
+	@CPF
 	@Column(nullable = false, unique = true, length = 14)
 	public String getCpf() {
 		return cpf;
