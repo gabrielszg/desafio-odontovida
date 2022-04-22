@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import br.com.teste.model.Funcionario;
 import br.com.teste.service.CadastroException;
 import br.com.teste.service.FuncionarioService;
+import br.com.teste.util.date.DateValidator;
 import br.com.teste.util.jsf.FacesUtil;
 
 @Named
@@ -60,8 +61,16 @@ public class CadastroFuncionarioBean implements Serializable {
 			}
 			
 		} catch (CadastroException ce) {
-			FacesUtil.addErrorMessage("Erro ao cadastrar o funcionario. Idade menor que 18 anos!");
-			ce.printStackTrace();
+			
+			if (DateValidator.getAge(funcionario.getDataNascimento()) < 18){
+				FacesUtil.addErrorMessage("Erro ao cadastrar o funcionário. Idade menor que 18 anos!");
+				ce.printStackTrace();
+			}
+			
+			if (funcionario.getCpf() != null) {
+				FacesUtil.addErrorMessage("Erro ao cadastrar o funcionário. Já existe funcionário cadastrado com esse CPF!");
+				ce.printStackTrace();
+			}
 		}
 	}
 

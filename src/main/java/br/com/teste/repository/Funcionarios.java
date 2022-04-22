@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
@@ -57,12 +58,18 @@ public class Funcionarios implements Serializable {
 		}
 
 	}
-	
-	public Funcionario porId(Integer idFuncionario) {
-		return manager.find(Funcionario.class, idFuncionario);
-	}
 
 	public Funcionario findById(Integer idFuncionario) {
 		return manager.find(Funcionario.class, idFuncionario);
+	}
+	
+	public Funcionario findByCpf(String cpf) {
+		try {
+			return manager.createQuery("from Funcionario where cpf = :cpf", Funcionario.class)
+					.setParameter("cpf", cpf)
+					.getSingleResult();
+		}catch (NoResultException ne) {
+			return null;
+		}
 	}
 }

@@ -19,6 +19,12 @@ public class FuncionarioService implements Serializable {
 	@Transactional
 	public Funcionario salvar(Funcionario funcionario) throws CadastroException {
 		
+		Funcionario funcionarioExistente = funcionarios.findByCpf(funcionario.getCpf());
+		
+		if (funcionarioExistente != null && !funcionarioExistente.equals(funcionario)) {
+			throw new CadastroException("Já existe funcionário com o CPF informado");
+		}
+		
 		if (DateValidator.getAge(funcionario.getDataNascimento()) >= 18) {
 			return funcionarios.guardar(funcionario);
 		}else {
